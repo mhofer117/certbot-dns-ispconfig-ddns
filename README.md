@@ -6,6 +6,8 @@ using tokens from the ISPConfig [DDNS module](https://github.com/mhofer117/ispco
 This plugin automates the process of completing a `dns-01` challenge by
 creating, and subsequently removing, TXT records.
 
+[![Python package](https://github.com/mhofer117/certbot-dns-ispconfig-ddns/actions/workflows/python-package.yml/badge.svg)](https://github.com/mhofer117/certbot-dns-ispconfig-ddns/actions/workflows/python-package.yml)
+
 ### Configuration of ISPConfig
 
 In the `DNS -> Dynamic DNS -> Tokens` you need to have a token with the following rights:
