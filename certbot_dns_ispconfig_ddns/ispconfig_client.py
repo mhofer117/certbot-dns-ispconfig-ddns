@@ -1,7 +1,5 @@
 """DNS Authenticator for ISPConfig."""
-import json
 import logging
-import time
 import requests
 
 # prevent urllib3 to log request with the api token

@@ -1,5 +1,4 @@
 """Tests for certbot_dns_ispconfig.dns_ispconfig."""
-
 import unittest
 
 import mock

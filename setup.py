@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-with open("Readme.md") as f:
+with open("README.md") as f:
     long_description = f.read()
 
 version = "v1.0"
@@ -11,7 +11,7 @@ install_requires = [
 ]
 
 tests_require = [
-    'mock',
+    "mock",
     "responses",
 ]
 
