@@ -36,6 +36,7 @@ pytest-cov = "*"
 mock = "*"
 responses = "*"
 flake8 = "*"
+importlib-metadata = { version = "<5.0", python = "<=3.7" }
 
 [tool.poetry.scripts]
 lint = "scripts:lint"
