@@ -40,7 +40,10 @@ class Authenticator(dns_common.DNSAuthenticator):
             default_propagation_seconds=DEFAULT_PROPAGATION_SECONDS
         )
         add("credentials", help="ISPConfig DDNS credentials INI file.")
-        add("endpoint", help="ISPConfig endpoint (overwrites credentials file)")
+        add(
+            "endpoint",
+            help="ISPConfig endpoint (overwrites credentials file)"
+        )
         add("token", help="ISPConfig DDNS token (overwrites credentials file)")
 
     def more_info(self) -> str:
@@ -113,7 +116,9 @@ class Authenticator(dns_common.DNSAuthenticator):
 
         :return: the created ISPConfigClient object
         """
+        endpoint = self.conf("endpoint") or self.credentials.conf("endpoint")
+        token = self.conf("token") or self.credentials.conf("token")
         return ISPConfigClient(
-            endpoint=self.conf("endpoint") or self.credentials.conf("endpoint"),
-            token=self.conf("token") or self.credentials.conf("token")
+            endpoint=endpoint,
+            token=token
         )

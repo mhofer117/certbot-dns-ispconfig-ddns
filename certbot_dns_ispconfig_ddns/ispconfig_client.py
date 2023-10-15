@@ -1,5 +1,6 @@
 """DNS Authenticator for ISPConfig."""
 import logging
+
 import requests
 
 # prevent urllib3 to log request with the api token
@@ -56,7 +57,9 @@ class ISPConfigClient:
             "data": record_content,
         }
         response: requests.Response = requests.post(
-            url=update_url, params=query_params, auth=('anonymous', self._token)
+            url=update_url,
+            params=query_params,
+            auth=('anonymous', self._token)
         )
         response.raise_for_status()
 
@@ -81,6 +84,8 @@ class ISPConfigClient:
             "data": record_content,
         }
         response: requests.Response = requests.delete(
-            url=update_url, params=query_params, auth=('anonymous', self._token)
+            url=update_url,
+            params=query_params,
+            auth=('anonymous', self._token)
         )
         response.raise_for_status()
