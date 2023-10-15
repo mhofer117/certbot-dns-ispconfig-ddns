@@ -8,6 +8,7 @@ version = "1.0.0"
 description = "Obtain certificates using a DNS TXT record for ISPConfig domains with DDNS module tokens"
 authors = ["Marcel Hofer <m.hofer117@gmail.com>"]
 readme = "README.md"
+homepage  = "https://github.com/mhofer117/certbot-dns-ispconfig-ddns"
 repository = "https://github.com/mhofer117/certbot-dns-ispconfig-ddns"
 license = "Apache-2.0"
 classifiers = [
