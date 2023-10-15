@@ -1,4 +1,4 @@
-name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
+name: Test/Build/Publish
 
 on:
   push:
@@ -28,21 +28,6 @@ jobs:
         run: poetry run lint
       - name: Test
         run: poetry run test
-      - name: Code Coverage Summary Report
-        uses: irongut/CodeCoverageSummary@v1.3.0
-        with:
-          filename: coverage.xml
-          badge: true
-          fail_below_min: true
-          thresholds: '60 80'
-          format: markdown
-          output: both
-      - name: Add Coverage PR Comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
-        with:
-          recreate: true
-          path: code-coverage-results.md
 
   build:
     name: Build distribution 📦
@@ -62,6 +47,19 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install poetry
           poetry install --with test
+      - name: Lint
+        run: poetry run lint
+      - name: Test
+        run: poetry run test
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage.xml
+          badge: true
+          fail_below_min: true
+          thresholds: '60 80'
+          format: markdown
+          output: both
       - name: Build a binary wheel and a source tarball
         run: poetry build
       - name: Store the distribution packages
@@ -69,7 +67,6 @@ jobs:
         with:
           name: python-package-distributions
           path: dist/
-
 
   publish-to-pypi:
     name: >-

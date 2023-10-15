@@ -71,3 +71,35 @@ certbot certonly \
     -d 'example.com' \
     -d '*.example.com'
 ```
+
+### Docker
+
+In order to create a docker container with a certbot-dns-ispconfig installation,
+create an empty directory with the following `Dockerfile`:
+
+```docker
+
+    FROM certbot/certbot
+    RUN pip install certbot-dns-ispconfig-ddns
+```
+
+Proceed to build the image::
+```commandline
+    docker build -t certbot/dns-ispconfig-ddns .
+```
+
+Once that's finished, the application can be run as follows::
+
+```commandline
+docker run --rm \
+    -v /var/lib/letsencrypt:/var/lib/letsencrypt \
+    -v /etc/letsencrypt:/etc/letsencrypt \
+    --cap-drop=all \
+    certbot/dns-ispconfig-ddns certonly \
+    --non-interactive \
+    --agree-tos \
+    --authenticator dns-ispconfig-ddns \
+    --dns-ispconfig-ddns-propagation-seconds 60 \
+    --dns-ispconfig-ddns-credentials /etc/letsencrypt/.secrets/domain.tld.ini \
+    -d example.com -d '*.example.com'
+```
