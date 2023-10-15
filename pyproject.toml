@@ -1,0 +1,42 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "certbot-dns-ispconfig-ddns"
+version = "1.0.0"
+description = "Obtain certificates using a DNS TXT record for ISPConfig domains with DDNS module tokens"
+authors = ["Marcel Hofer <m.hofer117@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/mhofer117/certbot-dns-ispconfig-ddns"
+license = "Apache-2.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+    "Topic :: System :: Systems Administration"
+]
+
+[tool.poetry.plugins."certbot.plugins"]
+"dns-ispconfig-ddns" = "certbot_dns_ispconfig_ddns.authenticator:Authenticator"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+certbot = "*"
+requests = "*"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest-cov = "*"
+mock = "*"
+responses = "*"
+flake8 = "*"
+
+[tool.poetry.scripts]
+lint = "scripts:lint"
+test = "scripts:test"
