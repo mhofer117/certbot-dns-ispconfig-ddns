@@ -33,12 +33,24 @@ requests = "*"
 optional = true
 
 [tool.poetry.group.test.dependencies]
-pytest-cov = "*"
+# testing
+pytest = "*"
+pytest-md-report = "*"
+coverage = "*"
 mock = "*"
 responses = "*"
+# linting
 flake8 = "*"
+# flake8 fix for python 3.7: https://github.com/python/importlib_metadata/issues/406
 importlib-metadata = { version = "<5.0", python = "<=3.7" }
+
+[tool.poetry.group.ci]
+optional = true
+
+[tool.poetry.group.ci.dependencies]
+genbadge = {extras = ["all"], version = "*"}
 
 [tool.poetry.scripts]
 lint = "scripts:lint"
 test = "scripts:test"
+ci-badges = "scripts:ci_badges"

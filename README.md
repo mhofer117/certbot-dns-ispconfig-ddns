@@ -6,6 +6,10 @@ using tokens from the ISPConfig [DDNS module](https://github.com/mhofer117/ispco
 This plugin automates the process of completing a `dns-01` challenge by
 creating, and subsequently removing, TXT records.
 
+[![Tests Status](./reports/tests/badge.svg?dummy=8484744)](./reports/tests/report.md)
+[![Coverage Status](./reports/coverage/badge.svg?dummy=8484744)](./reports/coverage/report.md)
+[![Lint Status](./reports/lint/badge.svg?dummy=8484744)](./reports/lint/report.txt)
+
 ### Configuration of ISPConfig
 
 In the `DNS -> Dynamic DNS -> Tokens` you need to have a token with the following rights:
