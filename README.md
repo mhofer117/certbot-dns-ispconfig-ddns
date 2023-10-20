@@ -6,6 +6,7 @@ using tokens from the ISPConfig [DDNS module](https://github.com/mhofer117/ispco
 This plugin automates the process of completing a `dns-01` challenge by
 creating, and subsequently removing, TXT records.
 
+[![Test/Build/Publish](https://github.com/mhofer117/certbot-dns-ispconfig-ddns/actions/workflows/workflow.yml/badge.svg)](https://github.com/mhofer117/certbot-dns-ispconfig-ddns/actions/workflows/workflow.yml)
 [![Tests Status](./reports/tests/badge.svg?dummy=8484744)](./reports/tests/report.md)
 [![Coverage Status](./reports/coverage/badge.svg?dummy=8484744)](./reports/coverage/report.md)
 [![Lint Status](./reports/lint/badge.svg?dummy=8484744)](./reports/lint/report.txt)
