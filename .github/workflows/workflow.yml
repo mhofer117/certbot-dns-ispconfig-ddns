@@ -30,13 +30,6 @@ jobs:
         python-version: [ "3.7", "3.8", "3.9", "3.10", "3.11" ]
 
     steps:
-      - if: github.event_name == 'workflow_dispatch'
-        run: |
-          if [[ "${{ github.ref }}" != "master" ]] && [[ "${{ github.event.inputs.version }}" =~ ^(patch|minor|major)$ ]];
-          then
-            echo "Final versions can only be built from master branch"
-            exit 1
-          fi
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -62,6 +55,13 @@ jobs:
       contents: write
 
     steps:
+      - if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [[ "${{ github.ref }}" != "refs/heads/master" ]] && [[ "${{ github.event.inputs.version }}" =~ ^(patch|minor|major)$ ]];
+          then
+            echo "Final versions can only be built from master branch"
+            exit 1
+          fi
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
