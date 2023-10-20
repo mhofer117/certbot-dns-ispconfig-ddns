@@ -6,9 +6,19 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to create (major/minor/patch/pre*)'
+        # see: https://python-poetry.org/docs/cli/#version
+        description: 'Version to create'
         required: true
         default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - prerelease
+          - prepatch
+          - preminor
+          - premajor
 
 jobs:
   verify:
@@ -22,8 +32,9 @@ jobs:
     steps:
       - if: github.event_name == 'workflow_dispatch'
         run: |
-          if ! [[ "${{ github.event.inputs.version }}" =~ ^(major|minor|patch|premajor|preminor|prepatch|prerelease)$ ]];
+          if [[ "${{ github.ref }}" != "master" ]] && [[ "${{ github.event.inputs.version }}" =~ ^(patch|minor|major)$ ]];
           then
+            echo "Final versions can only be built from master branch"
             exit 1
           fi
       - uses: actions/checkout@v4
@@ -43,7 +54,7 @@ jobs:
 
   build:
     name: Build distribution 📦
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs:
       - verify
     runs-on: ubuntu-latest
@@ -65,7 +76,14 @@ jobs:
         run: poetry run test
       - name: Generate badges
         run: poetry run ci-badges
-      - name: Generate badges
+      - name: Set new version from manual dispatch input
+        if: github.event_name == 'workflow_dispatch'
+        run: poetry version ${{ github.event.inputs.version }}
+      - name: Set new version from tag
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        run: tag="${{ github.ref_name }}"; poetry version ${tag#"v"}
+      - name: Set new prerelease version
+        if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
         run: poetry version prerelease
       - name: Build a binary wheel and a source tarball
         run: poetry build
@@ -74,12 +92,24 @@ jobs:
         with:
           name: python-package-distributions
           path: dist/
+      - name: GIT commit reports and new version
+        run: |
+          git config --global user.name "Continuous Integration Workflow"
+          git config --global user.email "github-actions@noreply.github.com"
+          git add reports pyproject.toml
+          git commit -m "Continuous Integration Build Artifacts"
+          git push
+      - name: Create new tag
+        if: (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || github.event_name == 'workflow_dispatch'
+        run: |
+          git tag v$(poetry version -s)-ci-workflow
+          git push
 
   publish-to-pypi:
     name: >-
       Publish Python 🐍 distribution 📦 to PyPI
-    # only publish to PyPI on tag pushes
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    # only publish to PyPI on tag pushes or manual dispatches
+    if: (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || github.event_name == 'workflow_dispatch'
     needs:
       - build
     runs-on: ubuntu-latest
@@ -134,7 +164,7 @@ jobs:
 
   publish-to-testpypi:
     name: Publish Python 🐍 distribution 📦 to TestPyPI
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     needs:
       - build
     runs-on: ubuntu-latest
@@ -156,4 +186,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-          skip-existing: true
+          skip-existing: false
