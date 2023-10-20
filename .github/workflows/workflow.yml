@@ -107,7 +107,7 @@ jobs:
           git push
       - id: version_tag
         if: github.event_name == 'workflow_dispatch'
-        run: echo "version_tag=v$(poetry version -s)-ci-workflow" >> "$GITHUB_OUTPUT"
+        run: echo "version_tag=v$(poetry version -s)" >> "$GITHUB_OUTPUT"
 
   publish-to-pypi:
     name: >-
