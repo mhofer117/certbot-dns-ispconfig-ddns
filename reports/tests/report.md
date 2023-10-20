@@ -1,0 +1,6 @@
+|                                                                    filepath                                                                     | $$\textcolor{#23d18b}{\tt{passed}}$$ | SUBTOTAL |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------: | -------: |
+| $$\textcolor{#23d18b}{\tt{tests/authenticator\\_test.py}}$$                                                                                     |   $$\textcolor{#23d18b}{\tt{7}}$$ | $$\textcolor{#23d18b}{\tt{7}}$$ |
+| $$\textcolor{#23d18b}{\tt{../../../.cache/pypoetry/virtualenvs/certbot\text{-}dns\text{-}ispconfig\text{-}ddns\text{-}qNVO9rbv\text{-}py3.11/lib/python3.11/site\text{-}packages/certbot/plugins/dns\\_test\\_common.py}}$$ |   $$\textcolor{#23d18b}{\tt{3}}$$ | $$\textcolor{#23d18b}{\tt{3}}$$ |
+| $$\textcolor{#23d18b}{\tt{tests/ispconfig\\_client\\_test.py}}$$                                                                                |  $$\textcolor{#23d18b}{\tt{10}}$$ | $$\textcolor{#23d18b}{\tt{10}}$$ |
+| $$\textcolor{#23d18b}{\tt{TOTAL}}$$                                                                                                             |  $$\textcolor{#23d18b}{\tt{20}}$$ | $$\textcolor{#23d18b}{\tt{20}}$$ |
