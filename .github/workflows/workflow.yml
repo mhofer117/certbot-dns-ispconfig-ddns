@@ -95,6 +95,8 @@ jobs:
           name: python-package-distributions
           path: dist/
       - name: GIT commit reports and new version
+        # will not work for tag pushes yet: fatal: You are not currently on a branch.
+        if: !startsWith(github.ref, 'refs/tags/')
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@noreply.github.com"
@@ -102,16 +104,18 @@ jobs:
           git commit -m "CI Results"
           git push
       - name: Create new tag
-        if: (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || github.event_name == 'workflow_dispatch'
+        #if: (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch'
         run: |
           git tag v$(poetry version -s)-ci-workflow
-          git push
+          git push origin --tags
 
   publish-to-pypi:
     name: >-
       Publish Python 🐍 distribution 📦 to PyPI
     # only publish to PyPI on tag pushes or manual dispatches
-    if: (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || github.event_name == 'workflow_dispatch'
+    #if: (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch'
     needs:
       - build
     runs-on: ubuntu-latest
