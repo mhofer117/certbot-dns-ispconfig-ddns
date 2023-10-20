@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "certbot-dns-ispconfig-ddns"
-version = "1.0.5"
+version = "1.0.6"
 description = "Obtain certificates using a DNS TXT record for ISPConfig domains with DDNS module tokens"
 authors = ["Marcel Hofer <m.hofer117@gmail.com>"]
 readme = "README.md"
