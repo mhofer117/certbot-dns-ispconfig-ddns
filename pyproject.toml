@@ -25,7 +25,7 @@ classifiers = [
 "dns-ispconfig-ddns" = "certbot_dns_ispconfig_ddns.authenticator:Authenticator"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 certbot = "*"
 requests = "*"
 
@@ -40,12 +40,7 @@ coverage = "*"
 mock = "*"
 responses = "*"
 # linting
-flake8 = [
-    { version = "*", python = ">=3.8" },
-    { version = "^3.9", python = "<=3.7" }
-]
-# flake8 fix for python 3.7: https://github.com/python/importlib_metadata/issues/406
-importlib-metadata = { version = "<4.3,>=1.1.0", python = "<=3.7" }
+flake8 = "*"
 
 [tool.poetry.group.ci]
 optional = true
