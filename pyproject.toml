@@ -40,7 +40,10 @@ coverage = "*"
 mock = "*"
 responses = "*"
 # linting
-flake8 = "*"
+flake8 = [
+    { version = "*", python = ">=3.8" },
+    { version = "^3.9", python = "<=3.7" }
+]
 # flake8 fix for python 3.7: https://github.com/python/importlib_metadata/issues/406
 importlib-metadata = { version = "<5.0", python = "<=3.7" }
 
