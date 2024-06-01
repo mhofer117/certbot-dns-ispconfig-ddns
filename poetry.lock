@@ -1010,13 +1010,13 @@ testing = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygm
 
 [[package]]
 name = "pytest-md-report"
-version = "0.5.1"
-description = "A pytest plugin to make a test results report with Markdown table format."
+version = "0.6.2"
+description = "A pytest plugin to generate test outcomes reports with markdown table format."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pytest-md-report-0.5.1.tar.gz", hash = "sha256:5b33eca4155caed703a9923e3ee02db5f23b601282e435b920cf98ee251d4052"},
-    {file = "pytest_md_report-0.5.1-py3-none-any.whl", hash = "sha256:8daff8f77d8ff0e96e349800e4e25bd8b30f0fbfd0eb6692757a6e6949a8afde"},
+    {file = "pytest_md_report-0.6.2-py3-none-any.whl", hash = "sha256:66e27efa5c155c87eb4700d60876e61a85c13361448c4031fda964c43e63c9b9"},
+    {file = "pytest_md_report-0.6.2.tar.gz", hash = "sha256:5e96c655ebc9b5c3c7b78bf7c5382c1f68056e96904430252790f8737de5ce99"},
 ]
 
 [package.dependencies]
