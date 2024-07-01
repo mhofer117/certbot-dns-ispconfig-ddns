@@ -2,13 +2,13 @@
 
 [[package]]
 name = "acme"
-version = "2.9.0"
+version = "2.11.0"
 description = "ACME protocol implementation in Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "acme-2.9.0-py3-none-any.whl", hash = "sha256:68a9adee0e6e9dd8a9c1b6d8cef8c3df7d42646082c50418fe5b94dd0366e189"},
-    {file = "acme-2.9.0.tar.gz", hash = "sha256:f7fb2aa4f7ccd132f4ece307d9de6d30b94b2a08c302531f4f43f85ed18673ea"},
+    {file = "acme-2.11.0-py3-none-any.whl", hash = "sha256:23213ac3074a78862b219e0a30e141fd53238a8bdcf0668bd4dea59b28873fb8"},
+    {file = "acme-2.11.0.tar.gz", hash = "sha256:f4950015cf52ff0de12f37fc28034c7710aca63f64f1696253d2f6cb9f22645e"},
 ]
 
 [package.dependencies]
@@ -26,17 +26,17 @@ test = ["importlib-resources (>=1.3.1)", "pytest", "pytest-xdist", "typing-exten
 
 [[package]]
 name = "certbot"
-version = "2.9.0"
+version = "2.11.0"
 description = "ACME client"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "certbot-2.9.0-py3-none-any.whl", hash = "sha256:7220857f3ed87317bc628e716cf26276ae5894fa79bfe9b7057b79822328561e"},
-    {file = "certbot-2.9.0.tar.gz", hash = "sha256:3eafe967523704dac854df36bcca5e5fa949cdd9df835651b0f3712b1cd90c05"},
+    {file = "certbot-2.11.0-py3-none-any.whl", hash = "sha256:dc4e0a48bcb09448d60362170ca1047cc9a81966da0dd35135f2561f0ea7d5b1"},
+    {file = "certbot-2.11.0.tar.gz", hash = "sha256:257ae1cb0a534373ca50dd807c9ae96f27660e41379c45afb9b50cab0e6a7a97"},
 ]
 
 [package.dependencies]
-acme = ">=2.9.0"
+acme = ">=2.11.0"
 ConfigArgParse = ">=1.5.3"
 configobj = ">=5.0.6"
 cryptography = ">=3.2.1"
